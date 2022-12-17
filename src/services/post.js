@@ -56,8 +56,33 @@ export const postApi = createApi({
                 };
             },
         }),
+
+        updatePost: builder.mutation({
+            query: (updatePostData) => {
+                console.log(updatePostData);
+
+                const { id, ...data } = updatePostData;
+
+                console.log(data);
+
+                return {
+                    url: `posts/${id}`,
+                    method: "PUT",
+                    body: data,
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8",
+                    },
+                };
+            },
+        }),
     }),
 });
 
-export const { useGetAllPostQuery, useGetPostQuery, useGetPostsByLimitQuery, useDeletePostMutation, useCreatePostMutation } =
-    postApi;
+export const {
+    useGetAllPostQuery,
+    useGetPostQuery,
+    useGetPostsByLimitQuery,
+    useDeletePostMutation,
+    useCreatePostMutation,
+    useUpdatePostMutation,
+} = postApi;
