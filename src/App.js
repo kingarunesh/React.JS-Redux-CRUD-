@@ -1,14 +1,16 @@
-import { useGetAllPostQuery, useGetPostQuery, useGetPostsByLimitQuery } from "./services/post";
+import { useGetAllPostQuery, useGetPostQuery, useGetPostsByLimitQuery, useDeletePostMutation } from "./services/post";
 
 function App() {
     // const responseInfo = useGetAllPostQuery();
 
     // const responseInfo = useGetPostQuery(1);
 
-    const responseInfo = useGetPostsByLimitQuery(2);
+    // const responseInfo = useGetPostsByLimitQuery(2);
+
+    const [deletePost, responseInfo] = useDeletePostMutation();
 
     console.log(responseInfo);
-    console.log(responseInfo.data);
+    console.log(responseInfo.isSuccess);
 
     if (responseInfo.isLoading) {
         return <div>Loading...</div>;
@@ -20,6 +22,9 @@ function App() {
 
     return (
         <>
+            {/* 
+                INFO : GET ALL POSTS  
+            */}
             {/* <div>
                 {responseInfo.data.map((post, index) => {
                     return (
@@ -34,6 +39,9 @@ function App() {
                 })}
             </div> */}
 
+            {/* 
+                INFO : GET SINGLE POST
+            */}
             {/* <div>
                 <h2>
                     {responseInfo.data.id} {responseInfo.data.title}
@@ -41,7 +49,10 @@ function App() {
                 <p>{responseInfo.data.body}</p>
             </div> */}
 
-            <div>
+            {/* 
+                INFO : GET LIMIT POSTS  
+            */}
+            {/* <div>
                 {responseInfo.data.map((post, index) => {
                     return (
                         <div key={index}>
@@ -53,7 +64,13 @@ function App() {
                         </div>
                     );
                 })}
-            </div>
+            </div> */}
+
+            {/* 
+                INFO : DELETE POST  
+            */}
+
+            <button onClick={() => deletePost(2)}>Delete</button>
         </>
     );
 }
