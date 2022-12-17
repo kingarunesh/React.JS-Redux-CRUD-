@@ -1,4 +1,10 @@
-import { useGetAllPostQuery, useGetPostQuery, useGetPostsByLimitQuery, useDeletePostMutation } from "./services/post";
+import {
+    useGetAllPostQuery,
+    useGetPostQuery,
+    useGetPostsByLimitQuery,
+    useDeletePostMutation,
+    useCreatePostMutation,
+} from "./services/post";
 
 function App() {
     // const responseInfo = useGetAllPostQuery();
@@ -7,7 +13,15 @@ function App() {
 
     // const responseInfo = useGetPostsByLimitQuery(2);
 
-    const [deletePost, responseInfo] = useDeletePostMutation();
+    // const [deletePost, responseInfo] = useDeletePostMutation();
+
+    const [createPost, responseInfo] = useCreatePostMutation();
+
+    const newPostData = {
+        title: "foo",
+        body: "bar",
+        userId: 1,
+    };
 
     console.log(responseInfo);
     console.log(responseInfo.isSuccess);
@@ -70,7 +84,12 @@ function App() {
                 INFO : DELETE POST  
             */}
 
-            <button onClick={() => deletePost(2)}>Delete</button>
+            {/* <button onClick={() => deletePost(2)}>Delete</button> */}
+
+            {/* 
+                INFO : add POST  
+            */}
+            <button onClick={() => createPost(newPostData)}>add post</button>
         </>
     );
 }
