@@ -1,9 +1,11 @@
-import { useGetAllPostQuery, useGetPostQuery } from "./services/post";
+import { useGetAllPostQuery, useGetPostQuery, useGetPostsByLimitQuery } from "./services/post";
 
 function App() {
     // const responseInfo = useGetAllPostQuery();
 
-    const responseInfo = useGetPostQuery(1);
+    // const responseInfo = useGetPostQuery(1);
+
+    const responseInfo = useGetPostsByLimitQuery(2);
 
     console.log(responseInfo);
     console.log(responseInfo.data);
@@ -32,11 +34,25 @@ function App() {
                 })}
             </div> */}
 
-            <div>
+            {/* <div>
                 <h2>
                     {responseInfo.data.id} {responseInfo.data.title}
                 </h2>
                 <p>{responseInfo.data.body}</p>
+            </div> */}
+
+            <div>
+                {responseInfo.data.map((post, index) => {
+                    return (
+                        <div key={index}>
+                            <h3>
+                                {post.id} {post.title}
+                            </h3>
+                            <p>{post.body}</p>
+                            <hr />
+                        </div>
+                    );
+                })}
             </div>
         </>
     );
