@@ -1,7 +1,9 @@
-import { useGetAllPostQuery } from "./services/post";
+import { useGetAllPostQuery, useGetPostQuery } from "./services/post";
 
 function App() {
-    const responseInfo = useGetAllPostQuery();
+    // const responseInfo = useGetAllPostQuery();
+
+    const responseInfo = useGetPostQuery(1);
 
     console.log(responseInfo);
     console.log(responseInfo.data);
@@ -16,7 +18,7 @@ function App() {
 
     return (
         <>
-            <div>
+            {/* <div>
                 {responseInfo.data.map((post, index) => {
                     return (
                         <div key={index}>
@@ -28,6 +30,13 @@ function App() {
                         </div>
                     );
                 })}
+            </div> */}
+
+            <div>
+                <h2>
+                    {responseInfo.data.id} {responseInfo.data.title}
+                </h2>
+                <p>{responseInfo.data.body}</p>
             </div>
         </>
     );
